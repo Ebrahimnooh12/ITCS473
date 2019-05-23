@@ -279,12 +279,13 @@ if(!isset($sv)){
                             <div class="col-12 mb-30"><h4><b>Email</b></h4><input name='Email' value='<?php echo $row['Email'];?>'></div>                        
 
                         <?php }?> 
-                            <div class="col-12 ml-80">
+                            <div class="col-12 ml-150">
                             <input  id='sub' type="submit" value="Save" name='cus_up'>
-                            <button id='sub' class='btn'>Staff<i class="fa fa-exchange ml-15" aria-hidden="true"></i></button>
                             </div>      
                         </div>
                     </form>
+                    <button id='sub' class='btn ml-160' onclick="window.location.href='cus-staf.php?t=c&i=<?php echo $row['cid'];?>'">Staff<i class="fa fa-exchange ml-15" aria-hidden="true"></i></button>
+
                 </div>
             </div>
             <div class="col-md-5 col-12 d-flex">
@@ -341,12 +342,13 @@ if(!isset($sv)){
                                         <option value='D'>Driver</option>
                                 </select>
                             </div>
-                            <div class="col-12 ml-80">
-                            <input  id='sub' type="submit" value="Save" name='cus_up'>
-                            <button id='sub' class='btn'>Customer<i class="fa fa-exchange ml-15" aria-hidden="true"></i></button>
+                            <div class="col-12 ml-170">
+                            <input  id='sub' type="submit" value="Save" name='stf'>
                             </div>         
                         </div>
                     </form>
+                    <button id='sub' class='btn ml-160' onclick="window.location.href='cus-staf.php?t=s&i=<?php echo $row['sid'];?>'">Customer<i class="fa fa-exchange ml-15" aria-hidden="true"></i></button>
+
                 </div>
             </div>
     </div>

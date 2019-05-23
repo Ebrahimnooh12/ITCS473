@@ -399,7 +399,7 @@ catch(PDOException $e)
                             <li>
                             <div class="col-12 mb-30"><h4>
                                 <b>Address</b></h4>
-                                <a id='edit' href='update.php?locid=<?php echo $row['lid'].'&c='.$row['city'].'&b='.$row['building'].'&s='.$row['street'];?>&st=ul'><i class="fa fa-pencil fa-lg mr-20"></i></a> 
+                                <a id='<?php echo $row['lid'];?>' onclick='editAddress(this)'><i class="fa fa-pencil fa-lg mr-20"></i></a> 
                                 <a href='update.php?locid=<?php echo $row['lid']; ?>&st=dl' id='delete'><i id='delete' class="fa fa-trash-o fa-lg "></i></a>   
                                <?php if(isset($err))
                                         {   
@@ -410,9 +410,9 @@ catch(PDOException $e)
                                 }    
                                  ?>           
                              </div>
-                            <div class="col-12 mb-30"><h4>City</h4><input value='<?php echo $row['city'];?>'></div>
-                            <div class="col-12 mb-30"><h4>Buliding</h4><input value='<?php echo $row['building'];?>'></div>
-                            <div class="col-12 mb-30"><h4>Streat</h4><input value='<?php echo $row['street'];?>'>
+                            <div class="col-12 mb-30"><h4>City</h4><input class='<?php echo $row['lid'];?>' value='<?php echo $row['city'];?>'></div>
+                            <div class="col-12 mb-30"><h4>Buliding</h4><input class='<?php echo $row['lid'];?>' value='<?php echo $row['building'];?>'></div>
+                            <div class="col-12 mb-30"><h4>Streat</h4><input class='<?php echo $row['lid'];?>' value='<?php echo $row['street'];?>'>
                             </div>
                             </li>
                             <?php }?>  
@@ -582,6 +582,23 @@ $(function() {
   });
   
 });
+
+function editAddress(ID){
+    var x = ID.id;
+    var elements = document.getElementsByClassName(x);
+
+    for (var i = 0, len = elements.length; i < len; i++) {
+          var city = elements[0].value;
+          var building = elements[1].value;
+          var street = elements[2].value;
+    }
+          var str = 'update.php?address='+x+'!'+city+'!'+building+'!'+street;
+
+
+          window.location.href = str;
+
+
+}
 
 
 

@@ -7,19 +7,43 @@ if(isset($info_u)) {
     $st='uf';
 }
 
-if(isset($loc_u)){
-    $st='ul';
-}
 
 try{
     require("connection.php");
     $userid=$_SESSION['activeuser'][1];
+
+    if(isset($address))
+      {     
+          echo $address;
+          $v = explode('!',$address);
+          
+          $lid= $v[0];
+          $c= $v[1];
+          $b= $v[2];
+          $s= $v[3]; 
+          
+
+          $sql = "UPDATE address
+          SET city ='$c' , street ='$s', building='$b' 
+          WHERE lid = $lid;";
+
+          $r = $db->exec($sql);
+
+          $db = null;
+
+          header('location: myaccount.php');
+          die();
+
+
+      }  
+
+
     $nodeletesql="select cid from address where cid =$userid;";
 
     $nodelete= $db->query($nodeletesql);
     $dc = $nodelete->rowCount();
 
-    if($dc == 1 && $st != 'ul')
+    if($dc == 1)
     {   
         header('location: myaccount.php?err=1');
         die();
@@ -64,15 +88,7 @@ try{
 
     
     $db->commit();
-
-    if($st == 'ul'){
-        echo $locid;
-        echo $c;
-
-           $sql = "UPDATE address SET city=?, street=?, building=? WHERE lid=?";
-            $stmt= $db->prepare($sql);
-            $stmt->execute([$c, $s, $b, $locid]);
-    }
+    
     $db = null;
     
 
